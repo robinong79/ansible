@@ -16,13 +16,17 @@
           - software-properties-common
         state: latest
     
-    - name: add Docker GPG key
-      command: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-    - name: add docker repository
-      command: "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-                $(lsb_release -cs) \
-                stable"
+    - name: Add Docker apt key
+      shell: "curl -sSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
+      args:
+        warn: no
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
+        state: present
+        update_cache: yes
 
     - name: apt update
       apt:
