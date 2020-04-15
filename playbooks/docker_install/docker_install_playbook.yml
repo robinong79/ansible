@@ -1,0 +1,56 @@
+---
+- name : install docker
+  hosts: docker-servers
+  become: true
+
+  tasks:
+  - name: remove existing docker
+    yum:
+      name: 
+        - docker
+        - docker-client
+        - docker-client-latest
+        - docker-common
+        - docker-latest
+        - docker-latest-logrotate
+        - docker-logrotate
+        - docker-engine       
+      state: absent
+  
+  - name: install yum-utils
+    yum:
+      name: yum-utils
+      state: latest
+  
+  - name: add docker-ce repository (latest)
+    yum_repository:
+      name: docker-ce
+      baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+  
+  - name: install docker components
+    yum:
+      name:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+      state: latest
+  
+  - name: start docker
+    systemd:
+      name : docker
+      state: started
+
+  - name: Get current logged on user
+    command: whoami
+    changed_when: false
+    become: false
+    register: whoami
+
+  - name: set fact with current user name
+    set_fact:
+      login_user: "{{whoami.stdout}}"
+
+  - name: add user to docker group
+    user:
+      name: {{login_user}}
+      group: docker
