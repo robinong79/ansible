@@ -8,7 +8,7 @@
   when: ansible_distribution == "CentOS" and ansible_distribution_major_version == '7'
 
 - name: Install Docker Debian
-  include_tasks: install_debian_ubuntu.yml
+  include_tasks: install_debian.yml
   when: (ansible_distribution == "Debian" and ansible_distribution_release == "buster" and ansible_distribution_major_version >= '10') or 
         (ansible_distribution == "Debian" and ansible_distribution_release == "stretch" and ansible_distribution_major_version >= '9')
 
