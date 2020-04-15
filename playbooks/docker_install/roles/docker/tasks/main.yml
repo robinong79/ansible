@@ -18,8 +18,8 @@
 
 - name: Install Docker Ubuntu
   include_tasks: install_ubuntu.yml
-  when: (ansible_distribution == "Ubuntu" and ansible_distribution_release == "eoan" and ansible_distribution_major_version >= '19.10') or
-        (ansible_distribution == "Ubuntu" and ansible_distribution_release == "bionic" and ansible_distribution_major_version >= '18.04') or
-        (ansible_distribution == "Ubuntu" and ansible_distribution_release == "xenial" and ansible_distribution_major_version >= '16.04')
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_release == "eoan" and ansible_distribution_major_version >= '19' and ansible_distribution_version >= '19.10') or
+        (ansible_distribution == "Ubuntu" and ansible_distribution_release == "bionic" and ansible_distribution_major_version >= '18' and ansible_distribution_version >= '18.04') or
+        (ansible_distribution == "Ubuntu" and ansible_distribution_release == "xenial" and ansible_distribution_major_version >= '16' and ansible_distribution_version >= '16.04')
 
 - import_tasks: configure.yml
