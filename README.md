@@ -4,7 +4,7 @@ Repository for different Ansible playbooks to make life easier
 ## Prerequisites
 - Have a VM/HyperV/Server with CentOS 7 installed
 - update yum (sudo yum update)
-- install ansible (sudo yum install ansible)
+- install ansible (sudo yum install ansible) (Minimal version of Ansible is 2.4)
 - Check that ansible has installed correctly (ansible --version)
 
 ## Notes

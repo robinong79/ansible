@@ -36,5 +36,5 @@
           - docker-ce-cli
           - containerd.io
 
-  when: (ansible_distribution == "Ubuntu" and ansible_distribution_release == "Buster" and ansible_distribution_major_version >= '10') or 
-        (ansible_distribution == "Ubuntu" and ansible_distribution_release == "Stretch" and ansible_distribution_major_version >= '9')
+  when: (ansible_distribution == "Debian" and ansible_distribution_release == "buster" and ansible_distribution_major_version >= '10') or 
+        (ansible_distribution == "Debian" and ansible_distribution_release == "stretch" and ansible_distribution_major_version >= '9')
