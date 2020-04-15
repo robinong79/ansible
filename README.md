@@ -66,6 +66,9 @@ Repository for different Ansible playbooks to make life easier
 - Wait for the playbook to end.
 - Congratz. You have docker installed on your OS
 
+# Handy Ansible Commands
+- ansible localhost -m setup | grep distribution
+
 
 
 
