@@ -31,12 +31,19 @@ Repository for different Ansible playbooks to make life easier
 - $ sudo apt-add-repository --yes --update ppa:ansible/ansible
 - $ sudo apt -y nstall ansible
 
+### Fedora (30)
+- $ sudo dnf update (This might take a while)
+- $ sudo dnf install ansible
+
+
 ## Notes
 - The playbooks are build to run localy on a server. If you want to run it on different servers than you have to change the connection option in the playbook file to **remote** and setup a correct ssh connection (ssh keys) to your servers.
 
 - The playbooks need to be run as sudo
 
 - You might need more modules installed per OS. Ansible should show this in the stdout or stderror
+
+- The Reboot on Fedora will not work with Ansible on localhost. Use a controller instead when needed
 
 # Playbooks
 
@@ -49,7 +56,7 @@ Repository for different Ansible playbooks to make life easier
 - Install the latest Docker version on:
     - CentOs (7) (Verified on HyperV with CentOs 7)
     - Debian (Verified on AWS EC2 Debian Stretch 9.0 )
-    - Fedora
+    - Fedora (Verified on AWS EC2 Fedora 30.0 / Reboot doesnt work when executed on Local server itself )
     - Ubuntu (Verified on AWS EC2 Ubuntu Bionic 18.04)
 - Add current logged in user to Docker group
 
