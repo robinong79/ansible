@@ -16,8 +16,13 @@
           - software-properties-common
         state: latest
     
-    - name: add Docker GPG key
-      command: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+    - name: Add Docker apt key if failed
+      shell: "curl -sSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -"
+      args:
+        warn: no
+
+    # - name: add Docker GPG key
+    #   command: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 
     - name: add docker repository
       command: "deb [arch=amd64] https://download.docker.com/linux/debian \
