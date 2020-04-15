@@ -1,0 +1,8 @@
+---
+
+- name : Prepare server
+  hosts: docker-servers
+  roles:
+    - docker
+  connection: local
+  become: true

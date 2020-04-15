@@ -1,0 +1,31 @@
+---
+
+- name: install docker (CentOS)
+  block:
+    - name: install yum-utils
+      yum:
+        name: yum-utils
+        state: latest
+
+    - name: Remove repository (and clean up left-over metadata)
+      yum_repository:
+        name: docker-ce
+        state: absent
+      notify: yum-clean-metadata
+        
+    - name: add docker-ce repository (latest)
+      command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+    - name: install docker components
+      yum:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: latest
+
+    - name: start docker
+      systemd:
+        name : docker
+        state: started
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == '7'

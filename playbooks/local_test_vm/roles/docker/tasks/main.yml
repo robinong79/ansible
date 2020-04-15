@@ -1,0 +1,25 @@
+---
+# Tasks file for /roles/docker
+
+- import_tasks: uninstall.yml
+
+- name: Install Docker CentOS
+  include_tasks: install_centos.yml
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == '7'
+
+- name: Install Docker Debian
+  include_tasks: install_debian_ubuntu.yml
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_release == "Buster" and ansible_distribution_major_version >= '10') or 
+        (ansible_distribution == "Ubuntu" and ansible_distribution_release == "Stretch" and ansible_distribution_major_version >= '9')
+
+- name: Install Docker Fedora
+  include_tasks: install_fedora.yml
+  when: ansible_distribution == "Fedora" and ansible_distribution_major_version >= '30'
+
+- name: Install Docker Ubuntu
+  include_tasks: install_ubuntu.yml
+  when: (ansible_distribution == "Ubuntu" and ansible_distribution_release == "Eoan" and ansible_distribution_major_version >= '19.10') or
+        (ansible_distribution == "Ubuntu" and ansible_distribution_release == "Bionic" and ansible_distribution_major_version >= '18.04') or
+        (ansible_distribution == "Ubuntu" and ansible_distribution_release == "Xenial" and ansible_distribution_major_version >= '16.04')
+
+- import_tasks: configure.yml
